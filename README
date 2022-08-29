@@ -1,16 +1,10 @@
 README for LuaJIT 2.1.0-beta3
 -----------------------------
 
-LuaJIT is a Just-In-Time (JIT) compiler for the Lua programming language.
+### lua_yeild
 
-Project Homepage: http://luajit.org/
-
-LuaJIT is Copyright (C) 2005-2017 Mike Pall.
-LuaJIT is free software, released under the MIT license.
-See full Copyright Notice in the COPYRIGHT file or in luajit.h.
-
-Documentation for LuaJIT is available in HTML format.
-Please point your favorite browser to:
-
- doc/luajit.html
+对于 luajit, c调用lua_yeild之后的代码**还会执行**，和lua 5.4不一样,
+相当于在lua调用c函数在**返回到lua层的时间点，才yeild**,  下一次resume才会从调用c函数的地方继续执行，
+并且栈上的参数是resume传入的参数，而不是c函数压栈的参数；
+对于c函数调用lua_yield前压栈的参数，给到了resume返回
 
